@@ -1,0 +1,48 @@
+﻿@page "/tecnologias"
+
+<PageTitle>Tecnologias</PageTitle>
+
+<h3>Tecnologias</h3>
+
+@if (StackList == null)
+{
+    <h1>Nenhuma stack adicionada.</h1>
+}
+else
+{
+    <h1 class="phrase">Essas são as tecnologias que eu estudo...</h1>
+    <section>
+        @foreach (var stack in StackList)
+        {
+            <div class="stackpallete">
+                <h1>@stack.Nome</h1>
+                <img src="@stack.Url">
+            </div>
+        }
+    </section>
+}
+
+@code {
+
+    public List<Stack>? StackList;
+
+    protected override async Task OnInitializedAsync()
+    {
+        StackList = new List<Stack>();
+        StackList.Add(new Stack(".NET", "https://www.softwarecraftsperson.com/images/dotnet.png"));
+        StackList.Add(new Stack("Java", "https://static.vecteezy.com/system/resources/previews/022/101/050/original/java-logo-transparent-free-png.png"));
+        StackList.Add(new Stack("Unity", "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/unity-game-engine-icon.png"));
+    }
+
+    public class Stack
+    {
+        public string Nome { get; set; }
+        public string Url { get; set; }
+
+        public Stack(string nome, string url)
+        {
+            Nome = nome;
+            Url = url;
+        }
+    }
+}
